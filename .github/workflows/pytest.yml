@@ -11,7 +11,8 @@ jobs:
   tests:
     runs-on: ubuntu-22.04
     env:
-      PYTHONPATH: ${{ github.workspace }}   # даём доступ к ./src для импортов
+      # Добавляем корень репо в PYTHONPATH, чтобы import src.* работал
+      PYTHONPATH: ${{ github.workspace }}
 
     steps:
       - name: Checkout repository
@@ -33,5 +34,5 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
 
-      - name: Run Pytest
-        run: pytest -q
+      - name: Run Pytest (src/tests)
+        run: pytest -q src/tests
