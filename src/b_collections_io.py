@@ -1,5 +1,5 @@
-# B-OSA: kogud ja failid.
-# Ülesanne: kirjuta teste, et leida vigased funktsioonid!
+import string
+from collections import Counter
 
 def unique_sorted(nums):
     """Tagasta kasvavas järjekorras unikaalsed arvud."""
@@ -66,3 +66,4 @@ def chunk_list(lst, size):
     for i in range(0, len(lst), size):
         result.append(lst[i:i + size])
     return result
+
