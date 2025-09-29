@@ -6,14 +6,14 @@ def unique_sorted(nums):
     return sorted(set(nums))
 
 
-def count_words(text):
-    """Tagasta sõnade (split vastavalt whitespace) sageduste sõnastik."""
-    words = text.lower().split()
-    result = {}
-    for word in words:
-        result[word] = result.get(word, 0) + 1
-    return result
-
+def count_words(text: str) -> dict[str, int]:
+    """Tagasta sõnade sagedused: väiketähed + punktuatsioon eemaldatud."""
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
+    table = str.maketrans({c: " " for c in string.punctuation})
+    normalized = text.lower().translate(table)
+    return dict(Counter(w for w in normalized.split() if w))
+    
 def merge_dicts(d1, d2):
     """Tagasta uus sõnastik, kus d2 väärtused varjutavad d1 omad."""
     result = d1.copy()
